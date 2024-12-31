@@ -28,20 +28,14 @@ public class Number_1269 {
             B.add(number);
         }
 
-        int aMinusB = countA;
-        int bMinusA = countB;
+        Set<Integer> tmpA = new HashSet<>(A);
+        Set<Integer> tmpB = new HashSet<>(B);
 
-        for(Integer number : rawA) {
-            if(B.contains(number)) {
-                aMinusB--;
-            }
-        }
+        tmpA.removeAll(B);
+        tmpB.removeAll(A);
 
-        for(Integer number : rawB) {
-            if(A.contains(number)) {
-                bMinusA--;
-            }
-        }
+        int aMinusB = tmpA.size();
+        int bMinusA = tmpB.size();
 
         System.out.println(aMinusB + bMinusA);
     }
