@@ -9,19 +9,8 @@ public class Number_1100 {
         for(int i = 0; i < 8; ++i) {
             String[] input = bufferedReader.readLine().split("");
             for(int j = 0; j < 8; ++j) {
-                if(i % 2 == 0) {
-                    if(j % 2 == 0) {
-                        if(input[j].equals("F")) {
-                            result++;
-                        }
-                    }
-                }
-                else {
-                    if(j % 2 != 0) {
-                        if(input[j].equals("F")) {
-                            result++;
-                        }
-                    }
+                if(input[j].equals("F") && (i+j) % 2 == 0) {
+                    result++;
                 }
             }
         }
