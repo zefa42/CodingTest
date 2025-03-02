@@ -1,7 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.PriorityQueue;
 
 public class Number_1417 {
     public static void main(String[] args) throws IOException {
@@ -13,20 +14,16 @@ public class Number_1417 {
         }
 
         int standard = Integer.parseInt(bufferedReader.readLine());
-        int[] candidates = new int[count - 1];
+        PriorityQueue<Integer> candidates = new PriorityQueue<>(Collections.reverseOrder());
         for(int i = 0; i < count - 1; ++i) {
-            candidates[i] = Integer.parseInt(bufferedReader.readLine());
+            candidates.add(Integer.parseInt(bufferedReader.readLine()));
         }
 
         int minPerson = 0;
-        while(true) {
-            Arrays.sort(candidates);
-            if(candidates[count - 2] < standard) {
-                break;
-            }
-            candidates[count - 2]--;
+        while (!candidates.isEmpty() && candidates.peek() >= standard) {
             minPerson++;
             standard++;
+            candidates.add(candidates.poll() - 1);
         }
         System.out.println(minPerson);
     }
