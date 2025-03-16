@@ -4,24 +4,28 @@ import java.io.InputStreamReader;
 
 public class Number_2231 {
     public static void main(String[] args) throws IOException {
-        System.out.println(findConstructor(readNumber()));
-    }
-
-    private static String readNumber() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        return bufferedReader.readLine();
+        int number = Integer.parseInt(bufferedReader.readLine());
+        System.out.println(getConstructor(number));
     }
 
-    private static int findConstructor(String number) {
-        int N = Integer.parseInt(number);
-        int sub = 0;
-        int constructor = 0;
-        for(int i = 0; i <number.length(); ++i) {
-            sub += (Integer.parseInt(String.valueOf(number.charAt(i)))) * 2;
+    private static int getConstructor(int number) {
+        int numberLength = String.valueOf(number).length();
+        // 후보의 시작점 찾기
+        int start = Math.max(1, number - (9 * numberLength));
+
+        for (int candidate = start; candidate < number; candidate++) {
+            int sum = candidate;
+            int temp = candidate;
+            while (temp > 0) {
+                sum += temp % 10;
+                temp /= 10;
+            }
+            if (sum == number) {
+                return candidate;
+            }
         }
-        if(N - sub > 0) {
-            constructor = (N - sub);
-        }
-        return constructor;
+        return 0;
     }
+
 }
