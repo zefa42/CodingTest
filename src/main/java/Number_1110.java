@@ -8,11 +8,10 @@ public class Number_1110 {
         int number = Integer.parseInt(bufferedReader.readLine());
         int tmp = number;
         int cycleCount = 0;
-        while(true) {
+        do {
             cycleCount++;
             tmp = findNewNumber(tmp);
-            if(number == tmp) break;
-        }
+        } while (number != tmp);
         System.out.println(cycleCount);
     }
 
