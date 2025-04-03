@@ -25,7 +25,11 @@ public class Number_1283 {
             for(int i = 0; i < splitedString.length; ++i) {
                 if (!alphabets.contains(Character.toLowerCase(splitedString[i].charAt(0)))) {
                     alphabets.add(Character.toLowerCase(splitedString[i].charAt(0)));
-                    splitedString[i] = splitedString[i].replace(splitedString[i].substring(0, 1), "[" + splitedString[i].charAt(0) + "]");
+                    String word = splitedString[i];
+                    StringBuilder sb = new StringBuilder(word);
+                    sb.insert(0, '[');
+                    sb.insert(2, ']');
+                    splitedString[i] = sb.toString();
                     isShortcut = true;
                     break;
                 }
@@ -35,8 +39,12 @@ public class Number_1283 {
                 for(int i = 0; i < splitedString.length; ++i) {
                     for(int j = 1; j < splitedString[i].length(); ++j) {
                         if (!alphabets.contains(Character.toLowerCase(splitedString[i].charAt(j)))) {
-                            alphabets.add(Character.toLowerCase(splitedString[i].charAt(0)));
-                            splitedString[i] = splitedString[i].replace(splitedString[i].substring(j, j + 1), "[" + splitedString[i].charAt(j) + "]");
+                            alphabets.add(Character.toLowerCase(splitedString[i].charAt(j)));
+                            String word = splitedString[i];
+                            StringBuilder sb = new StringBuilder(word);
+                            sb.insert(j, '[');
+                            sb.insert(j + 2, ']');
+                            splitedString[i] = sb.toString();
                             break OuterLoop;
                         }
                     }
@@ -46,13 +54,16 @@ public class Number_1283 {
                 result.append(s).append(" ");
             }
 
-
             return result.toString();
         }
         for(int i = 0; i < input.length(); ++i) {
             if(!alphabets.contains(Character.toLowerCase(input.charAt(i)))) {
                 alphabets.add(Character.toLowerCase(input.charAt(i)));
-                return input.replace(input.substring(i, i + 1), "[" + input.charAt(i) + "]");}
+                StringBuilder sb = new StringBuilder(input);
+                sb.insert(i, '[');
+                sb.insert(i + 2, ']');
+                return sb.toString();
+            }
         }
         return input;
     }
