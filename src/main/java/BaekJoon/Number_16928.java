@@ -26,9 +26,9 @@ public class Number_16928 {
         int ladderSize = size[0];
         int snakeSize = size[1];
 
-        int[] ladder = new int[101];
+        int[] board = new int[101];
         for(int i = 1; i < 101; ++i) {
-            ladder[i] = i;
+            board[i] = i;
         }
 
         // 사다리
@@ -36,7 +36,7 @@ public class Number_16928 {
             int[] input = Arrays.stream(bufferedReader.readLine().split(" "))
                     .mapToInt(Integer::parseInt)
                     .toArray();
-            ladder[input[0]] = input[1];
+            board[input[0]] = input[1];
         }
 
         // 뱀
@@ -44,7 +44,7 @@ public class Number_16928 {
             int[] input = Arrays.stream(bufferedReader.readLine().split(" "))
                     .mapToInt(Integer::parseInt)
                     .toArray();
-            ladder[input[0]] = input[1];
+            board[input[0]] = input[1];
         }
 
         boolean[] visited = new boolean[101];
@@ -66,7 +66,7 @@ public class Number_16928 {
                 if(next > 100) {
                     continue;
                 }
-                next = ladder[next];
+                next = board[next];
                 if(!visited[next]) {
                     visited[next] = true;
                     queue.offer(new State(next, curCount + 1));
