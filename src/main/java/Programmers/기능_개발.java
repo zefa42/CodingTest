@@ -5,12 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class 기능_개발 {
-    public static void main(String[] args) {
-        int[] result = solution(new int[] {93,30,55},  new int[] {1,30,5});
-        for(int val : result){
-            System.out.print(val + " ");
-        }
-    }
     public int[] solution(int[] progresses, int[] speeds) {
         int size = progresses.length;
         int[] durations = new int[size];
